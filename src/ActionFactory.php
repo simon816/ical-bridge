@@ -21,6 +21,7 @@ class ActionFactory
     public function __construct()
     {
         $this->actions = [
+            'display' => Action\DisplayAction::class,
         ];
     }
 

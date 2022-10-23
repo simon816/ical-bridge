@@ -21,6 +21,7 @@ class CacheFactory
     public function __construct()
     {
         $this->cacheNames = [
+            'file' => FileCache::class,
         ];
     }
 

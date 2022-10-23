@@ -15,9 +15,12 @@
     },
     "autoload": {
         "psr-4": {
-            "ICalBridge\\": "src/"
+            "ICalBridge\\": "src/",
+            "": "bridges/"
         },
         "files": [
+            "third-party/icalendar/zapcallib.php",
+            "third-party/simplehtmldom/simple_html_dom.php",
             "src/contents.php",
             "src/utils.php"
         ]
