@@ -1,5 +1,7 @@
 <?php
 
+namespace ICalBridge;
+
 final class BridgeFactory
 {
     private $folder;

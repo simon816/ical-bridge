@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace ICalBridge;
+
 final class Logger
 {
     public static function debug(string $message, array $context = [])

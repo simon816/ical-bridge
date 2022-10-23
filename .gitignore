@@ -1,0 +1,5 @@
+/cache/
+/vendor/
+/config/
+/whitelist.txt
+/config.ini.php

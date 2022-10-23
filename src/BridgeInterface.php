@@ -1,5 +1,7 @@
 <?php
 
+namespace ICalBridge;
+
 /**
  * This file is part of RSS-Bridge, a PHP project capable of generating RSS and
  * Atom feeds for websites that don't have one.
@@ -81,11 +83,11 @@ interface BridgeInterface
     public function getDescription();
 
     /**
-     * Returns an array of collected items
+     * Returns an array of collected events
      *
-     * @return array Associative array of items
+     * @return array Associative array of events
      */
-    public function getItems();
+    public function getEvents();
 
     /**
      * Returns the bridge maintainer

@@ -12,6 +12,8 @@
  * @link    https://github.com/rss-bridge/rss-bridge
  */
 
+namespace ICalBridge;
+
 /**
  * The cache interface
  */

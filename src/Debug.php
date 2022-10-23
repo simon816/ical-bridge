@@ -12,6 +12,8 @@
  * @link    https://github.com/rss-bridge/rss-bridge
  */
 
+namespace ICalBridge;
+
 /**
  * Implements functions for debugging purposes. Debugging can be enabled by
  * placing a file named DEBUG in {@see PATH_ROOT}.

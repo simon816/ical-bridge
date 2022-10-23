@@ -12,6 +12,8 @@
  * @link    https://github.com/rss-bridge/rss-bridge
  */
 
+namespace ICalBridge;
+
 /**
  * Configuration module for RSS-Bridge.
  *
@@ -116,7 +118,7 @@ final class Configuration
 
         if (
             !is_string(self::getConfig('system', 'timezone'))
-            || !in_array(self::getConfig('system', 'timezone'), timezone_identifiers_list(DateTimeZone::ALL_WITH_BC))
+            || !in_array(self::getConfig('system', 'timezone'), timezone_identifiers_list(\DateTimeZone::ALL_WITH_BC))
         ) {
             self::throwConfigError('system', 'timezone');
         }

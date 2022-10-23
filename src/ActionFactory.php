@@ -12,27 +12,26 @@
  * @link    https://github.com/rss-bridge/rss-bridge
  */
 
+namespace ICalBridge;
+
 class ActionFactory
 {
-    private $folder;
+    private $actions;
 
-    public function __construct(string $folder = PATH_LIB_ACTIONS)
+    public function __construct()
     {
-        $this->folder = $folder;
+        $this->actions = [
+        ];
     }
 
     /**
      * @param string $name The name of the action e.g. "Display", "List", or "Connectivity"
      */
-    public function create(string $name): ActionInterface
+    public function create(string $name): Action\ActionInterface
     {
-        $name = strtolower($name) . 'Action';
-        $name = implode(array_map('ucfirst', explode('-', $name)));
-        $filePath = $this->folder . $name . '.php';
-        if (!file_exists($filePath)) {
-            throw new \Exception('Invalid action');
+        if (!isset($this->actions[$name])) {
+            throw new \Exception("Unknown action: $name");
         }
-        $className = '\\' . $name;
-        return new $className();
+        return new $this->actions[$name]();
     }
 }

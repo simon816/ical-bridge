@@ -1,0 +1,25 @@
+{
+    "name": "simon816/ical-bridge",
+    "description": "RSS-Bridge but for iCalendar.",
+    "type": "project",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Simon816",
+            "email": "me@simon816.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-mbstring": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "ICalBridge\\": "src/"
+        },
+        "files": [
+            "src/contents.php",
+            "src/utils.php"
+        ]
+    }
+}

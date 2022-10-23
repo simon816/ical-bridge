@@ -1,5 +1,7 @@
 <?php
 
+namespace ICalBridge;
+
 /**
  * This file is part of RSS-Bridge, a PHP project capable of generating RSS and
  * Atom feeds for websites that don't have one.
@@ -86,15 +88,15 @@ abstract class BridgeAbstract implements BridgeInterface
     ];
 
     /**
-     * Holds the list of items collected by the bridge
+     * Holds the list of events collected by the bridge
      *
-     * Items must be collected by {@see BridgeInterface::collectData()}
+     * Events must be collected by {@see BridgeInterface::collectData()}
      *
-     * Use {@see BridgeAbstract::getItems()} to access items.
+     * Use {@see BridgeAbstract::getEvents()} to access events.
      *
      * @var array
      */
-    protected array $items = [];
+    protected array $events = [];
 
     /**
      * Holds the list of input parameters used by the bridge
@@ -114,9 +116,9 @@ abstract class BridgeAbstract implements BridgeInterface
     protected $queriedContext = '';
 
     /** {@inheritdoc} */
-    public function getItems()
+    public function getEvents()
     {
-        return $this->items;
+        return $this->events;
     }
 
     /**

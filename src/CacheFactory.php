@@ -12,20 +12,16 @@
  * @link    https://github.com/rss-bridge/rss-bridge
  */
 
+namespace ICalBridge;
+
 class CacheFactory
 {
-    private $folder;
     private $cacheNames;
 
-    public function __construct(string $folder = PATH_LIB_CACHES)
+    public function __construct()
     {
-        $this->folder = $folder;
-        // create cache names
-        foreach (scandir($this->folder) as $file) {
-            if (preg_match('/^([^.]+)Cache\.php$/U', $file, $m)) {
-                $this->cacheNames[] = $m[1];
-            }
-        }
+        $this->cacheNames = [
+        ];
     }
 
     /**
@@ -34,18 +30,11 @@ class CacheFactory
     public function create(string $name = null): CacheInterface
     {
         $name ??= Configuration::getConfig('cache', 'type');
-        $name = $this->sanitizeCacheName($name) . 'Cache';
 
-        if (! preg_match('/^[A-Z][a-zA-Z0-9-]*$/', $name)) {
+        if (!isset($this->cacheNames[$name])) {
             throw new \InvalidArgumentException('Cache name invalid!');
         }
-
-        $filePath = $this->folder . $name . '.php';
-        if (!file_exists($filePath)) {
-            throw new \Exception('Invalid cache');
-        }
-        $className = '\\' . $name;
-        return new $className();
+        return new $this->cacheNames[$name]();
     }
 
     protected function sanitizeCacheName(string $name)

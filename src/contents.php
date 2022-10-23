@@ -65,7 +65,7 @@ function getContents(
     array $curlOptions = [],
     bool $returnFull = false
 ) {
-    $cacheFactory = new CacheFactory();
+    $cacheFactory = new \ICalBridge\CacheFactory();
 
     $cache = $cacheFactory->create();
     $cache->setScope('server');
@@ -94,10 +94,10 @@ function getContents(
         'headers' => array_merge($defaultHttpHeaders, $httpHeadersNormalized),
         'curl_options' => $curlOptions,
     ];
-    if (Configuration::getConfig('proxy', 'url') && !defined('NOPROXY')) {
-        $config['proxy'] = Configuration::getConfig('proxy', 'url');
+    if (\ICalBridge\Configuration::getConfig('proxy', 'url') && !defined('NOPROXY')) {
+        $config['proxy'] = \ICalBridge\Configuration::getConfig('proxy', 'url');
     }
-    if (!Debug::isEnabled() && $cache->getTime()) {
+    if (!\ICalBridge\Debug::isEnabled() && $cache->getTime()) {
         $config['if_not_modified_since'] = $cache->getTime();
     }
 
@@ -161,8 +161,8 @@ function getContents(
 function _http_request(string $url, array $config = []): array
 {
     $defaults = [
-        'useragent' => Configuration::getConfig('http', 'useragent'),
-        'timeout' => Configuration::getConfig('http', 'timeout'),
+        'useragent' => \ICalBridge\Configuration::getConfig('http', 'useragent'),
+        'timeout' => \ICalBridge\Configuration::getConfig('http', 'timeout'),
         'headers' => [],
         'proxy' => null,
         'curl_options' => [],
@@ -348,7 +348,7 @@ function getSimpleHTMLDOMCached(
     $defaultBRText = DEFAULT_BR_TEXT,
     $defaultSpanText = DEFAULT_SPAN_TEXT
 ) {
-    Debug::log('Caching url ' . $url . ', duration ' . $duration);
+    \ICalBridge\Debug::log('Caching url ' . $url . ', duration ' . $duration);
 
     // Initialize cache
     $cacheFactory = new CacheFactory();
@@ -365,7 +365,7 @@ function getSimpleHTMLDOMCached(
     if (
         $time !== false
         && (time() - $duration < $time)
-        && !Debug::isEnabled()
+        && !\ICalBridge\Debug::isEnabled()
     ) { // Contents within duration
         $content = $cache->loadData();
     } else { // Content not within duration

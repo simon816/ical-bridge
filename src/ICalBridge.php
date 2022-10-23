@@ -1,7 +1,10 @@
 <?php
 
-final class RssBridge
+namespace ICalBridge;
+
+class ICalBridge
 {
+
     public function main(array $argv = [])
     {
         if ($argv) {
@@ -11,16 +14,7 @@ final class RssBridge
             $request = $_GET;
         }
 
-        try {
-            $this->run($request);
-        } catch (\Throwable $e) {
-            Logger::error('Exception in main', ['e' => $e]);
-            http_response_code(500);
-            print render(__DIR__ . '/../templates/error.html.php', [
-                'message'   => create_sane_exception_message($e),
-                'trace'     => trace_from_exception($e),
-            ]);
-        }
+        $this->run($request);
     }
 
     private function run($request): void
@@ -47,10 +41,12 @@ final class RssBridge
 
         date_default_timezone_set(Configuration::getConfig('system', 'timezone'));
 
+        /*
         $authenticationMiddleware = new AuthenticationMiddleware();
         if (Configuration::getConfig('authentication', 'enable')) {
             $authenticationMiddleware();
         }
+         */
 
         foreach ($request as $key => $value) {
             if (!is_string($value)) {
