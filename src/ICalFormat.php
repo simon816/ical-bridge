@@ -18,6 +18,7 @@ class ICalFormat
      */
     protected $lastModified;
 
+    private $name;
     private $events = [];
 
     public function setEvents(array $events)
@@ -32,10 +33,7 @@ class ICalFormat
 
     public function setExtraInfos(array $infos)
     {
-    }
-
-    public function getExtraInfos()
-    {
+        $this->name = $infos['name'];
     }
 
     public function getMimeType()
@@ -75,6 +73,9 @@ class ICalFormat
     public function stringify()
     {
         $cal = new \ZCiCal();
+        if ($this->name) {
+            $this->addProp($cal, 'X-WR-CALNAME', $this->name);
+        }
         foreach ($this->events as $event) {
             $eventobj = new \ZCiCalNode("VEVENT", $cal->curnode);
             if ($val = $event->summary()) {
@@ -108,5 +109,11 @@ class ICalFormat
     private function addDT(\ZCiCalNode $event, string $label, int $value = null)
     {
         $event->addNode(new \ZCiCalDataNode($label . ":" . \ZDateHelper::toiCalDateTime($value)));
+    }
+
+    private function addProp(\ZCiCal $cal, string $label, string $value)
+    {
+        $node = new \ZCiCalDataNode($label . ":" . \ZCiCal::formatContent($value));
+        $cal->curnode->data[$node->getName()] = $node;
     }
 }

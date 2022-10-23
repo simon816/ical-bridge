@@ -149,7 +149,7 @@ class DisplayAction implements ActionInterface
                     'icon' => $bridge->getIcon()
                 ];
             } catch (\Throwable $e) {
-                Logger::error(sprintf('Exception in %s', $bridgeClassName), ['e' => $e]);
+                \ICalBridge\Logger::error(sprintf('Exception in %s', $bridgeClassName), ['e' => $e]);
                 $errorCount = logBridgeError($bridge::NAME, $e->getCode());
 
                 if ($errorCount >= \ICalBridge\Configuration::getConfig('error', 'report_limit')) {

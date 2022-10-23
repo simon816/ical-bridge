@@ -53,7 +53,7 @@ final class Logger
             now()->format('Y-m-d H:i:s'),
             $level,
             $message,
-            $context ? Json::encode($context) : ''
+            $context ? \Json::encode($context) : ''
         );
         error_log($text);
     }

@@ -22,6 +22,7 @@
             "third-party/icalendar/zapcallib.php",
             "third-party/simplehtmldom/simple_html_dom.php",
             "src/contents.php",
+            "src/error.php",
             "src/php8backports.php",
             "src/utils.php"
         ]

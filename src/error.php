@@ -56,7 +56,7 @@ function returnServerError($message)
  */
 function logBridgeError($bridgeName, $code)
 {
-    $cacheFactory = new CacheFactory();
+    $cacheFactory = new \ICalBridge\CacheFactory();
 
     $cache = $cacheFactory->create();
     $cache->setScope('error_reporting');

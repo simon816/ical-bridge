@@ -351,7 +351,7 @@ function getSimpleHTMLDOMCached(
     \ICalBridge\Debug::log('Caching url ' . $url . ', duration ' . $duration);
 
     // Initialize cache
-    $cacheFactory = new CacheFactory();
+    $cacheFactory = new \ICalBridge\CacheFactory();
 
     $cache = $cacheFactory->create();
     $cache->setScope('pages');
