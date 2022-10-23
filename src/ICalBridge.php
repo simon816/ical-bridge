@@ -55,7 +55,7 @@ class ICalBridge
         }
 
         $actionFactory = new ActionFactory();
-        $action = $request['action'] ?? 'Frontpage';
+        $action = $request['action'] ?? 'frontpage';
         $action = $actionFactory->create($action);
         $action->execute($request);
     }

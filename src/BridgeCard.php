@@ -1,5 +1,7 @@
 <?php
 
+namespace ICalBridge;
+
 /**
  * This file is part of RSS-Bridge, a PHP project capable of generating RSS and
  * Atom feeds for websites that don't have one.
@@ -13,10 +15,10 @@
  */
 
 /**
- * A generator class for a single bridge card on the home page of RSS-Bridge.
+ * A generator class for a single bridge card on the home page of iCal-Bridge.
  *
  * This class generates the HTML content for a single bridge card for the home
- * page of RSS-Bridge.
+ * page of iCal-Bridge.
  *
  * @todo Return error if a caller creates an object of this class.
  */
@@ -26,11 +28,10 @@ final class BridgeCard
      * Gets a single bridge card
      *
      * @param class-string<BridgeInterface> $bridgeClassName The bridge name
-     * @param array $formats A list of formats
      * @param bool $isActive Indicates if the bridge is active or not
      * @return string The bridge card
      */
-    public static function displayBridgeCard($bridgeClassName, $formats, $isActive = true)
+    public static function displayBridgeCard($bridgeClassName, $isActive = true)
     {
         $bridgeFactory = new BridgeFactory();
 
@@ -75,11 +76,11 @@ CARD;
 
         // If we don't have any parameter for the bridge, we print a generic form to load it.
         if (count($parameters) === 0) {
-            $card .= self::getForm($bridgeClassName, $formats, $isActive, $isHttps);
+            $card .= self::getForm($bridgeClassName, $isActive, $isHttps);
 
             // Display form with cache timeout and/or noproxy options (if enabled) when bridge has no parameters
         } elseif (count($parameters) === 1 && array_key_exists('global', $parameters)) {
-            $card .= self::getForm($bridgeClassName, $formats, $isActive, $isHttps, '', $parameters['global']);
+            $card .= self::getForm($bridgeClassName, $isActive, $isHttps, '', $parameters['global']);
         } else {
             foreach ($parameters as $parameterName => $parameter) {
                 if (!is_numeric($parameterName) && $parameterName === 'global') {
@@ -94,7 +95,7 @@ CARD;
                     $card .= '<h5>' . $parameterName . '</h5>' . PHP_EOL;
                 }
 
-                $card .= self::getForm($bridgeClassName, $formats, $isActive, $isHttps, $parameterName, $parameter);
+                $card .= self::getForm($bridgeClassName, $isActive, $isHttps, $parameterName, $parameter);
             }
         }
 
@@ -144,7 +145,6 @@ This bridge is not fetching its content through a secure connection</div>';
      * Get the form body for a bridge
      *
      * @param class-string<BridgeInterface> $bridgeClassName The bridge name
-     * @param array $formats A list of supported formats
      * @param bool $isActive Indicates if a bridge is enabled or not
      * @param bool $isHttps Indicates if a bridge uses HTTPS or not
      * @param string $parameterName Sets the bridge context for the current form
@@ -153,7 +153,6 @@ This bridge is not fetching its content through a secure connection</div>';
      */
     private static function getForm(
         $bridgeClassName,
-        $formats,
         $isActive = false,
         $isHttps = false,
         $parameterName = '',
@@ -209,7 +208,7 @@ This bridge is not fetching its content through a secure connection</div>';
         }
 
         if ($isActive) {
-            $form .= '<button type="submit" name="format" formtarget="_blank" value="Html">Generate feed</button>';
+            $form .= '<button type="submit" formtarget="_blank">Generate calendar</button>';
         } else {
             $form .= '<span style="font-weight: bold;">Inactive</span>';
         }

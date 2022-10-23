@@ -19,7 +19,7 @@ final class Json
 }
 
 /**
- * Get the home page url of rss-bridge e.g. 'https://example.com/' or 'https://example.com/bridge/'
+ * Get the home page url of ical-bridge e.g. 'https://example.com/' or 'https://example.com/bridge/'
  */
 function get_home_page_url(): string
 {
@@ -57,11 +57,11 @@ function create_sane_exception_message(\Throwable $e): string
 }
 
 /**
- * Returns e.g. https://github.com/RSS-Bridge/rss-bridge/blob/master/bridges/AO3Bridge.php#L8
+ * Returns Github link for a bridge
  */
 function render_github_url(string $file, int $line, string $revision = 'master'): string
 {
-    return sprintf('https://github.com/RSS-Bridge/rss-bridge/blob/%s/%s#L%s', $revision, $file, $line);
+    return sprintf('https://github.com/simon816/ical-bridge/blob/%s/%s#L%s', $revision, $file, $line);
 }
 
 function trace_from_exception(\Throwable $e): array
@@ -119,7 +119,7 @@ function frame_to_call_point(array $frame): string
 /**
  * Trim path prefix for privacy/security reasons
  *
- * Example: "/var/www/rss-bridge/index.php" => "index.php"
+ * Example: "/var/www/ical-bridge/index.php" => "index.php"
  */
 function trim_path_prefix(string $filePath): string
 {

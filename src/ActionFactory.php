@@ -22,6 +22,7 @@ class ActionFactory
     {
         $this->actions = [
             'display' => Action\DisplayAction::class,
+            'frontpage' => Action\FrontpageAction::class,
         ];
     }
 
