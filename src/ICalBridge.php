@@ -14,7 +14,12 @@ class ICalBridge
             $request = $_GET;
         }
 
-        $this->run($request);
+        try {
+            $this->run($request);
+        } catch (\Throwable $e) {
+            Logger::error('Exception in main', ['e' => $e]);
+            http_response_code(500);
+        }
     }
 
     private function run($request): void
@@ -41,12 +46,10 @@ class ICalBridge
 
         date_default_timezone_set(Configuration::getConfig('system', 'timezone'));
 
-        /*
         $authenticationMiddleware = new AuthenticationMiddleware();
         if (Configuration::getConfig('authentication', 'enable')) {
             $authenticationMiddleware();
         }
-         */
 
         foreach ($request as $key => $value) {
             if (!is_string($value)) {

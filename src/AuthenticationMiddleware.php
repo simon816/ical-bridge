@@ -1,5 +1,7 @@
 <?php
 
+namespace ICalBridge;
+
 /**
  * This file is part of RSS-Bridge, a PHP project capable of generating RSS and
  * Atom feeds for websites that don't have one.
@@ -36,7 +38,6 @@ final class AuthenticationMiddleware
     private function renderAuthenticationDialog(): string
     {
         http_response_code(401);
-        header('WWW-Authenticate: Basic realm="RSS-Bridge"');
-        return render('access-denied.html.php');
+        header('WWW-Authenticate: Basic realm="iCal-Bridge"');
     }
 }
