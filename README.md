@@ -7,7 +7,7 @@ iCal-Bridge is a spin-off of the popular [RSS-Bridge](https://github.com/RSS-Bri
 ## Requirements
 
 * PHP >= 7.4
-* PHP mbstring extension
+* PHP extensions: [curl](https://www.php.net/manual/en/book.curl.php), [json](https://www.php.net/manual/en/book.json.php), [mbstring](https://www.php.net/manual/en/book.mbstring.php)
 * [Composer](https://getcomposer.org/)
 
 ## Setup

@@ -45,24 +45,9 @@ final class Configuration
 
         $errors = [];
 
-        // OpenSSL: https://www.php.net/manual/en/book.openssl.php
-        if (!extension_loaded('openssl')) {
-            $errors[] = 'openssl extension not loaded';
-        }
-
-        // libxml: https://www.php.net/manual/en/book.libxml.php
-        if (!extension_loaded('libxml')) {
-            $errors[] = 'libxml extension not loaded';
-        }
-
         // Multibyte String (mbstring): https://www.php.net/manual/en/book.mbstring.php
         if (!extension_loaded('mbstring')) {
             $errors[] = 'mbstring extension not loaded';
-        }
-
-        // SimpleXML: https://www.php.net/manual/en/book.simplexml.php
-        if (!extension_loaded('simplexml')) {
-            $errors[] = 'simplexml extension not loaded';
         }
 
         // Client URL Library (curl): https://www.php.net/manual/en/book.curl.php
