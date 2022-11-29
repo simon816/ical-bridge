@@ -1,10 +1,10 @@
 <?php
 
-class AnjunadeepBridge extends ICalBridge\BridgeAbstract
+class AnjunabeatsBridge extends ICalBridge\BridgeAbstract
 {
-    const NAME = 'Anjunadeep Events';
-    const URI = 'https://anjunadeep.com/events';
-    const DESCRIPTION = 'Events on the Anjunadeep website';
+    const NAME = 'Anjunabeats Events';
+    const URI = 'https://anjunabeats.com/events';
+    const DESCRIPTION = 'Events on the Anjunabeats website';
     const MAINTAINER = 'simon816';
     const PARAMETERS = [
         '' => [
