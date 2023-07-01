@@ -21,7 +21,7 @@ class AnjunadeepBridge extends ICalBridge\BridgeAbstract
         $this->events = [];
 
         $html = getSimpleHTMLDOM($this->getURI());
-        $elements = $html->find('main article > div');
+        $elements = $html->find('main article div.full-block > div');
         foreach ($elements as $elem) {
             $timeElem = $elem->find('time', 0);
             if ($timeElem === null) {
